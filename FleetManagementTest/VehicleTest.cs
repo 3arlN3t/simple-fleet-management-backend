@@ -41,6 +41,7 @@ namespace FleetManagementTest
             }
         }
 
+
         [Fact, Order(1)]
         public async Task Should_save_a_chassis()
         {
@@ -90,7 +91,20 @@ namespace FleetManagementTest
             }
         }
 
-        [Fact, Order(4)]
+        [Fact,Order(4)]
+        public async Task Should_get_vehicle_by_chassis_id()
+        {
+            using (var client = new TestClientProvider().Client)
+            {
+                var response = await client.GetAsync("/api/vehicles/chassis/ " + standardVehicle.ChassisId);
+
+                response.EnsureSuccessStatusCode();
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, Order(5)]
         public async Task Should_delete_a_vehicle()
         {
             using (var client = new TestClientProvider().Client)
@@ -101,7 +115,7 @@ namespace FleetManagementTest
             }
         }
 
-        [Fact, Order(5)]
+        [Fact, Order(6)]
         public async Task Should_delete_a_chassis()
         {
             using (var client = new TestClientProvider().Client)

@@ -50,15 +50,17 @@ namespace FleetManagementTest
         }
 
         [Fact, Order(2)]
-        public async Task Should_error_same_chassis()
+        public async Task Should_return_same_chassis()
         {
             using (var client = new TestClientProvider().Client)
             {
                 var response = await client.PostAsync("/api/chassis", new StringContent(
                     JsonConvert.SerializeObject(standardChassis)
-                    , Encoding.UTF8, "application/json"));                
+                    , Encoding.UTF8, "application/json"));
 
-                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+                var returnedChassis = await response.Content.ReadAsStringAsync();
+
+                Assert.NotNull(returnedChassis);
             }
         }
 
