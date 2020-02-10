@@ -1,6 +1,6 @@
 # Simple Fleet Management - BackEnd
 
-## Requirement
+## Requirements
 - Visual Studio 2017 +
 - SQL Server Database
 
@@ -14,6 +14,12 @@
     "CONNECTION_NAME": "server=YOUR_CONNECTRION_STRING,PORT;database=DATABASENAME;User ID=USERNAME;password=PASSWORD;"
   },
 ~~~
+
+## Setting up your database
+### Running migrations
+- In Visual Studio terminal:
+> Update-Database
+- If you have setted up your appsetings.json with the correct connection string, this command will build your database structure.
 
 ## Tests
 - Created tests for:
